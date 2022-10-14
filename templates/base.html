@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'bootstrap-icons/font/bootstrap-icons.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <title>Mais-Fit</title>
+    </head>
+    <body>
+        <div class="d-flex flex-column wrapper">
+            {% block header %}{% endblock %}
+            <main class="flex-fill">
+                <div class="container">
+                    <!-- bloco para por conteúdo em outras páginas -->
+                    {% block content %} {% endblock %}
+                </div>
+            </main>
+            {% block footer %}{% endblock %}
+            </footer>
+        </div>
+        <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script> 
+        <script type="module" src="{% static '/js/main.js' %}"></script>
+        {% block scripts %}
+        {% endblock %}
+    </body>
+</html>

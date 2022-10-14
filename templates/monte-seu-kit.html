@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block header %}
+    {% include 'partials/_header.html' %}
+{% endblock %}
+
+{% block content %}
+<h1>Monte seu Kit</h1>
+<div class="row bg-light">
+    <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+        <div class="justify-content-center justify-content-md-start mb-3 mb-md-0">
+            <img class="img-fluid img-thumbnail" src="{% static 'img/'|add:kit.link_img %}" alt="">
+        </div>
+    </div>
+    <div class="col-12 col-sm-8 col-md-8 col-lg-8">
+            <div class="d-flex flex-column justify-content-center justify-content-md-start">
+                <div class="d-inline-block me-3">
+                    <h3 class="display-5" >Kit Escolhido: {{ kit.titulo }}</h3>
+                    <p class="lead" >Descrição: {{ kit.descricao }}</p>
+                    <p class="lead">Quantidade de marmitas do kit: {{ kit.qtd_marmitas }}</p>
+                    <p class="lead" >Valor: R$ {{ kit.valor }}</p>
+                    <div class="bg-light">
+                        <label for="qtd-escolhida" class="lead text-success">Quantidade de marmitas escolhidas:</label>
+                        <input type="text" name="qtd-escolhida" id="qtd-escolhida" readonly class="text-center">
+                    </div>
+                    <button class="btn btn-success mt-3 d-block text-warning bi-cart" id="envia-carrinho" data-escolher>
+                        Enviar para o carrinho
+                    </button>
+                    <input type="hidden" name="qtd-marmitas" id="qtd-marmitas" value="{{ kit.qtd_marmitas }}">
+                    <input type="hidden" name="kit-id" id="kit_id" value="{{ kit.id }}">
+                </div>
+            </div>
+    </div>
+</div>
+
+<hr mt-3>
+
+<div class="row g-3">
+
+    {% for marmita in marmitas %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+            <div class="card text-center bg-light h-100">
+                <div href="#" class="position-absolute end-0 p-2 text-dark" data-placement="top" title="Tooltip na parte superior">
+                    <i class="bi-info-circle" style="font-size: 24px; line-height: 24px;"></i>
+                </div>
+                <div>
+                    <img src="{{ marmita.link_img }}" class="card-img-top" data-img="{{ marmita.link_img }}">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title" data-titulo="{{ marmita.titulo }}">{{ marmita.titulo }}</h5>
+                    <p class="card-text truncar-3l">
+                        {{ marmita.descricao }}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <div class="btn-group">
+                        <button class="btn btn-success bi-caret-down" data-controle="-"></button>
+                        <input type="hidden" name="marmita_id" id="marmita_id" value="{{ marmita.id }}">
+                        <input type="text" readonly class="form-control text-center" id="qtdMarmita" value="0" data-contador style="font-size: 24px; line-height: 24px;">
+                        <button class="btn btn-success bi-caret-up" data-controle="+"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+</div>
+
+<hr mt-3>
+
+{% endblock %}
+
+{% block footer %}
+    {% include 'partials/_footer.html' %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/marmita.js' %}"></script>
+{% endblock %}
