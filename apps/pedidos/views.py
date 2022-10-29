@@ -1,15 +1,17 @@
 from django.shortcuts import render
 
-from pedidos.models import Kit, Marmita
+from pedidos.models import Kit, Marmita, MeiosPagamento
 
 
 
 def index(request):
     kits = Kit.objects.filter(ativo=True)
     marmitas = Marmita.objects.filter(ativo=True)
+    meios_pagamento = MeiosPagamento.objects.filter(ativo=True)
     contexto = {
         'kits': kits,
         'marmitas': marmitas,
+        'meios_pagamento': meios_pagamento,
     }
     return render(request, "index.html", contexto)
 

@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from usuarios.models import Cliente, EnderecosEntrega
+
+admin.site.register(Cliente)
+admin.site.register(EnderecosEntrega)

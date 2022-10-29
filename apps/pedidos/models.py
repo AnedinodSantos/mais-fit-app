@@ -16,7 +16,7 @@ class Marmita(models.Model):
 class Kit(models.Model):
     titulo = models.CharField(max_length=100, null=False)
     descricao = models.TextField(max_length=500, blank=True)
-    # esse campo deve ser mudado para um FileField
+    # esse campo deve ser mudado para um imageFild
     link_img = models.CharField(max_length=500, blank=True)
     qtd_marmitas = models.IntegerField(null=False)
     valor = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
@@ -27,3 +27,16 @@ class Kit(models.Model):
 
     class Meta:
         db_table = 'kits'
+
+
+class MeiosPagamento(models.Model):
+    titulo = models.CharField(max_length=50, null=False)
+    # esse campo deve ser mudado para um imageFild
+    link_img = models.CharField(max_length=500, blank=True)
+    ativo = models.BooleanField(default=True)
+
+    def __str__(self) -> str:
+        return self.titulo
+
+    class Meta:
+        db_table = "meios_pagamento"

@@ -1,16 +1,21 @@
-import { atualizaIconeCarrinho, excluirKitLocalStorage, excluirMarmitasLocalStorage, zeraQtdAtual } from "./servicos.js"
-import { gravaKitNoLocalStorage } from "./servicos.js"
-import { rendererizaKitModal } from "./servicos.js"
-import { renderizaProdutoNoOffcanvas } from "./servicos.js"
-import { extraiKitDoHtmlComoObj } from "./servicos.js"
-import { manipulaQtdMarmita } from "./servicos.js"
-import { recuperaKitLocalStorage } from "./servicos.js"
-import { recuperaMarmitasLocalStorage } from "./servicos.js"
-import { criaProdutoLocalStorage } from "./servicos.js"
-import { verificaEnviaCarrinho } from "./servicos.js"
-import { extraiMarmitaDoHtmlComoObj } from "./servicos.js"
-import { excluirProdutoDoLocalStorage } from "./servicos.js"
-import { qtdAtual } from "./servicos.js"
+// import { atualizaIconeCarrinho, excluirKitLocalStorage, excluirMarmitasLocalStorage, zeraQtdAtual } from "./servicos_.js"
+// import { gravaKitNoLocalStorage } from "./servicos_.js"
+// import { rendererizaKitModal } from "./servicos_.js"
+// import { renderizaProdutoNoOffcanvas } from "./servicos_.js"
+// import { extraiKitDoHtmlComoObj } from "./servicos_.js"
+// import { manipulaQtdMarmita } from "./servicos_.js"
+// import { recuperaKitLocalStorage } from "./servicos_.js"
+// import { recuperaMarmitasLocalStorage } from "./servicos_.js"
+// import { criaProdutoLocalStorage } from "./servicos_.js"
+// import { verificaEnviaCarrinho } from "./servicos_.js"
+// import { extraiMarmitaDoHtmlComoObj } from "./servicos_.js"
+// import { excluirProdutoDoLocalStorage } from "./servicos_.js"
+// import { qtdAtual } from "./servicos_.js"
+import { atualizaIconeCarrinho} from "./services/cartServices.js"
+import { qtdAtual, zeraQtdAtual, verificaEnviaCarrinho } from "./services/marmitaServices.js"
+import { manipulaQtdMarmita, recuperaMarmitasLocalStorage, extraiMarmitaDoHtmlComoObj,  excluirMarmitasLocalStorage} from "./services/marmitaServices.js"
+import { criaProdutoLocalStorage, renderizaProdutoNoOffcanvas, excluirProdutoDoLocalStorage } from "./services/produtoServices.js"
+import { gravaKitNoLocalStorage, extraiKitDoHtmlComoObj, rendererizaKitModal, recuperaKitLocalStorage, excluirKitLocalStorage } from "./services/kitServices.js"
 
 const btnCarrinho = document.querySelector('[data-btn-carrinho]')
 const ocCarrinho = document.querySelector('[data-oc-carrinho]')
@@ -21,6 +26,9 @@ const modalkit = document.querySelector('[data-modalkit]')
 const btnEnviaCarrinho = modalkit.querySelector('[data-modal-btn-carrinho]')
 const inputQtdMarmitasEscolhidas = modalkit.querySelector('[data-modal-kit-qtd]')
 const btnsCloseModal = document.querySelectorAll('[data-modal-marmita-close]')
+
+const btnFinalizaPedido = ocCarrinho.querySelector("[data-oc-btn-finalizar]")
+const modalDadosEntrega = document.getElementById("entregaModal")
 
 
 

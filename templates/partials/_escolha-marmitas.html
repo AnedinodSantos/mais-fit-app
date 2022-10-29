@@ -1,0 +1,63 @@
+{% load static %}
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Escolha as marmitas do seu kit</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" data-modal-marmita-close aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="custon-sticky card bg-light border-primary" data-modalkit>
+                    <div class="row g-0">
+                        <div class="col-4">
+                            <img src="" class="card-img img-kit" alt="..." data-modal-kit-img>
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body text-end">
+                                <h5 class="card-title" data-modal-kit-titulo></h5>
+                                <p class="card-text" data-modal-kit-descr></p>
+                                <p class="card-text" data-modal-kit-valor></p>
+                                <span style="display: inline-block;"><small class="text-muted">Você pode revisar as marmitas no carrinho.</small></span>
+                                <input class="text-center w-25" type="text" data-modal-kit-qtd value="0" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-success float-end" data-modal-btn-carrinho data-bs-dismiss="modal" disabled>Enviar para carrinho</button>
+                    </div>
+                </div>
+                <div class="row g-1">
+                {% for marmita in marmitas %}
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-2">
+                        <div class="card text-center bg-light h-100" data-card-marmita-id="{{ marmita.id }}">
+                            <div href="#" class="position-absolute end-0 p-2 text-dark" data-placement="top" title="Tooltip na parte superior">
+                                <i class="bi-info-circle" style="font-size: 24px; line-height: 24px;"></i>
+                            </div>
+                            <div>
+                                <img src="{{ marmita.link_img }}" class="card-img-top h-30" data-card-marmita-img="{{ marmita.link_img }}">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title" data-card-marmita-titulo="{{ marmita.titulo }}">{{ marmita.titulo }}</h5>
+                                <p class="card-text truncar-3l" data-card-marmita-descricao>
+                                    {{ marmita.descricao }}
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="btn-group">
+                                    <button class="btn btn-success bi-caret-down" data-controle="-"></button>
+                                    <input type="text" readonly class="form-control text-center" id="qtdMarmita" value="0" data-contador style="font-size: 24px; line-height: 24px;">
+                                    <button class="btn btn-success bi-caret-up" data-controle="+"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-modal-marmita-close >Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
