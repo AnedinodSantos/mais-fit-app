@@ -16,6 +16,7 @@ import { qtdAtual, zeraQtdAtual, verificaEnviaCarrinho } from "./services/marmit
 import { manipulaQtdMarmita, recuperaMarmitasLocalStorage, extraiMarmitaDoHtmlComoObj,  excluirMarmitasLocalStorage} from "./services/marmitaServices.js"
 import { criaProdutoLocalStorage, renderizaProdutoNoOffcanvas, excluirProdutoDoLocalStorage } from "./services/produtoServices.js"
 import { gravaKitNoLocalStorage, extraiKitDoHtmlComoObj, rendererizaKitModal, recuperaKitLocalStorage, excluirKitLocalStorage } from "./services/kitServices.js"
+import { validarCPF } from "./services/validacaoServices.js"
 
 const btnCarrinho = document.querySelector('[data-btn-carrinho]')
 const ocCarrinho = document.querySelector('[data-oc-carrinho]')
@@ -30,7 +31,7 @@ const btnsCloseModal = document.querySelectorAll('[data-modal-marmita-close]')
 const btnFinalizaPedido = ocCarrinho.querySelector("[data-oc-btn-finalizar]")
 const modalDadosEntrega = document.getElementById("entregaModal")
 
-
+const concluirPedido = document.querySelector('#concluirPedido')
 
 atualizaIconeCarrinho()
 
@@ -109,3 +110,10 @@ btnsCloseModal.forEach(btn => {
         zeraQtdAtual()
     }
 });
+
+
+concluirPedido.addEventListener('click', function(e){
+    e.preventDefault()
+    let cpf = document.querySelector("#txtCPF").value
+    validarCPF(cpf)
+})
