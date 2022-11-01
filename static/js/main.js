@@ -16,7 +16,7 @@ import { qtdAtual, zeraQtdAtual, verificaEnviaCarrinho } from "./services/marmit
 import { manipulaQtdMarmita, recuperaMarmitasLocalStorage, extraiMarmitaDoHtmlComoObj,  excluirMarmitasLocalStorage} from "./services/marmitaServices.js"
 import { criaProdutoLocalStorage, renderizaProdutoNoOffcanvas, excluirProdutoDoLocalStorage } from "./services/produtoServices.js"
 import { gravaKitNoLocalStorage, extraiKitDoHtmlComoObj, rendererizaKitModal, recuperaKitLocalStorage, excluirKitLocalStorage } from "./services/kitServices.js"
-import { validarCPF, localizarEndereco } from "./services/validacaoServices.js"
+import { validarCPF, localizarEndereco, validarMaioridade } from "./services/validacaoServices.js"
 
 const btnCarrinho = document.querySelector('[data-btn-carrinho]')
 const ocCarrinho = document.querySelector('[data-oc-carrinho]')
@@ -33,6 +33,7 @@ const modalDadosEntrega = document.getElementById("entregaModal")
 
 const inputCPF = document.querySelector("#txtCPF")
 const inputCEP = document.querySelector("#txtCEP")
+const inputDataNascimento = document.querySelector("#txtDataNascimento")
 
 atualizaIconeCarrinho()
 
@@ -124,4 +125,11 @@ inputCEP.addEventListener('change', function(e){
     e.preventDefault()
     let cep = document.querySelector("#txtCEP").value
     localizarEndereco(cep)
+})
+
+
+inputDataNascimento.addEventListener('change', function(e){
+    e.preventDefault()
+    let dataNascimento = document.querySelector("#txtDataNascimento").value
+    validarMaioridade(dataNascimento)
 })

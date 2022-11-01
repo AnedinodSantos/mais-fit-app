@@ -105,3 +105,21 @@ export function localizarEndereco(inputCEP) {
     };
 
 };
+
+
+// validacao de maioridade
+export function validarMaioridade(dataNascimento) {
+
+    let hoje = new Date();
+    let diaNascimento = new Date(dataNascimento);
+    let ano = hoje.getFullYear() - diaNascimento.getFullYear();
+    let mes = hoje.getMonth() - diaNascimento.getMonth();
+    let dia = hoje.getDay() - diaNascimento.getDay();
+
+    if (ano < 18 || (ano == 18 & mes < 0) || (ano == 18 & mes == 0 & dia < 2)) {
+
+        alert('Você precisa ser maior de idade para se cadastrar!');
+
+    };
+
+};
