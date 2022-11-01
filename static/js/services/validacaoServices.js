@@ -68,32 +68,40 @@ export function validarCPF (cpf) {
 }
 
 
-// localizacao de cep
+// localizacao de endereco
 export function localizarEndereco(inputCEP) {
 
-    let url = `https://viacep.com.br/ws/${inputCEP}/json/`;
-    let xhr = new XMLHttpRequest();
+    if (inputCEP.length == 8) {
 
-    xhr.open('GET', url);
-    xhr.addEventListener('load', function () {
+        let url = `https://viacep.com.br/ws/${inputCEP}/json/`;
+        let xhr = new XMLHttpRequest();
 
-        if (xhr.status == 200) {
+        xhr.open('GET', url);
+        xhr.addEventListener('load', function () {
 
-            console.log(xhr.status)
-            let resposta = xhr.responseText;
-            let endereco = JSON.parse(resposta);
-            document.querySelector('#txtLogradouro').value = endereco.logradouro;
-            document.querySelector('#txtBairro').value = endereco.bairro;
-            document.querySelector('#txtCidade').value = endereco.localidade + ' - ' + endereco.uf;
+            if (xhr.status == 200) {
 
-        } else {
+                console.log(xhr.status)
+                let resposta = xhr.responseText;
+                let endereco = JSON.parse(resposta);
+                document.querySelector('#txtLogradouro').value = endereco.logradouro;
+                document.querySelector('#txtBairro').value = endereco.bairro;
+                document.querySelector('#txtCidade').value = endereco.localidade + ' - ' + endereco.uf;
 
-            alert('Informe um CEP válido!');
+            } else {
 
-        };
+                alert('Tente novamente!');
 
-    });
+            };
 
-    xhr.send();
+        });
+
+        xhr.send();
+
+    } else {
+
+        alert('Numero de caracteres invalido!');
+
+    };
 
 };

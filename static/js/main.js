@@ -31,7 +31,7 @@ const btnsCloseModal = document.querySelectorAll('[data-modal-marmita-close]')
 const btnFinalizaPedido = ocCarrinho.querySelector("[data-oc-btn-finalizar]")
 const modalDadosEntrega = document.getElementById("entregaModal")
 
-const concluirPedido = document.querySelector('#concluirPedido')
+const inputCPF = document.querySelector("#txtCPF")
 const inputCEP = document.querySelector("#txtCEP")
 
 atualizaIconeCarrinho()
@@ -113,7 +113,7 @@ btnsCloseModal.forEach(btn => {
 });
 
 
-concluirPedido.addEventListener('click', function(e){
+inputCPF.addEventListener('change', function(e){
     e.preventDefault()
     let cpf = document.querySelector("#txtCPF").value
     validarCPF(cpf)
