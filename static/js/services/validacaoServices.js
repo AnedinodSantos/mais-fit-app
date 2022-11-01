@@ -58,7 +58,7 @@ export function validarCPF (cpf) {
         if(soma == 10 || soma == 11)
             soma = 0;
         if(soma != cpf[10]) {
-            alert('Verifique o CPF!')
+            alert('Verifique o CPF!');
             return false;
         }
         
@@ -66,3 +66,34 @@ export function validarCPF (cpf) {
         return true;
     }
 }
+
+
+// localizacao de cep
+export function localizarEndereco(inputCEP) {
+
+    let url = `https://viacep.com.br/ws/${inputCEP}/json/`;
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('GET', url);
+    xhr.addEventListener('load', function () {
+
+        if (xhr.status == 200) {
+
+            console.log(xhr.status)
+            let resposta = xhr.responseText;
+            let endereco = JSON.parse(resposta);
+            document.querySelector('#txtLogradouro').value = endereco.logradouro;
+            document.querySelector('#txtBairro').value = endereco.bairro;
+            document.querySelector('#txtCidade').value = endereco.localidade + ' - ' + endereco.uf;
+
+        } else {
+
+            alert('Informe um CEP válido!');
+
+        };
+
+    });
+
+    xhr.send();
+
+};

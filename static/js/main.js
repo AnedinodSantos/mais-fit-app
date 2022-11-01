@@ -16,7 +16,7 @@ import { qtdAtual, zeraQtdAtual, verificaEnviaCarrinho } from "./services/marmit
 import { manipulaQtdMarmita, recuperaMarmitasLocalStorage, extraiMarmitaDoHtmlComoObj,  excluirMarmitasLocalStorage} from "./services/marmitaServices.js"
 import { criaProdutoLocalStorage, renderizaProdutoNoOffcanvas, excluirProdutoDoLocalStorage } from "./services/produtoServices.js"
 import { gravaKitNoLocalStorage, extraiKitDoHtmlComoObj, rendererizaKitModal, recuperaKitLocalStorage, excluirKitLocalStorage } from "./services/kitServices.js"
-import { validarCPF } from "./services/validacaoServices.js"
+import { validarCPF, localizarEndereco } from "./services/validacaoServices.js"
 
 const btnCarrinho = document.querySelector('[data-btn-carrinho]')
 const ocCarrinho = document.querySelector('[data-oc-carrinho]')
@@ -32,6 +32,7 @@ const btnFinalizaPedido = ocCarrinho.querySelector("[data-oc-btn-finalizar]")
 const modalDadosEntrega = document.getElementById("entregaModal")
 
 const concluirPedido = document.querySelector('#concluirPedido')
+const inputCEP = document.querySelector("#txtCEP")
 
 atualizaIconeCarrinho()
 
@@ -116,4 +117,11 @@ concluirPedido.addEventListener('click', function(e){
     e.preventDefault()
     let cpf = document.querySelector("#txtCPF").value
     validarCPF(cpf)
+})
+
+
+inputCEP.addEventListener('change', function(e){
+    e.preventDefault()
+    let cep = document.querySelector("#txtCEP").value
+    localizarEndereco(cep)
 })
