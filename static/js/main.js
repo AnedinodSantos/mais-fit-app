@@ -16,7 +16,7 @@ import { qtdAtual, zeraQtdAtual, verificaEnviaCarrinho } from "./services/marmit
 import { manipulaQtdMarmita, recuperaMarmitasLocalStorage, extraiMarmitaDoHtmlComoObj,  excluirMarmitasLocalStorage} from "./services/marmitaServices.js"
 import { criaProdutoLocalStorage, renderizaProdutoNoOffcanvas, excluirProdutoDoLocalStorage } from "./services/produtoServices.js"
 import { gravaKitNoLocalStorage, extraiKitDoHtmlComoObj, rendererizaKitModal, recuperaKitLocalStorage, excluirKitLocalStorage } from "./services/kitServices.js"
-import { validarCPF, localizarEndereco, validarMaioridade } from "./services/validacaoServices.js"
+import { validarCPF, localizarEndereco, validarMaioridade, validarNomeCompleto, validarNumeroTelefone, validarEmail } from "./services/validacaoServices.js"
 
 const btnCarrinho = document.querySelector('[data-btn-carrinho]')
 const ocCarrinho = document.querySelector('[data-oc-carrinho]')
@@ -31,9 +31,12 @@ const btnsCloseModal = document.querySelectorAll('[data-modal-marmita-close]')
 const btnFinalizaPedido = ocCarrinho.querySelector("[data-oc-btn-finalizar]")
 const modalDadosEntrega = document.getElementById("entregaModal")
 
+const inputNomeCompleto = document.querySelector("#txtNome")
 const inputCPF = document.querySelector("#txtCPF")
-const inputCEP = document.querySelector("#txtCEP")
 const inputDataNascimento = document.querySelector("#txtDataNascimento")
+const inputEmail = document.querySelector("#txtEmail")
+const inputTelefone = document.querySelector("#txtTelefone")
+const inputCEP = document.querySelector("#txtCEP")
 
 atualizaIconeCarrinho()
 
@@ -114,6 +117,13 @@ btnsCloseModal.forEach(btn => {
 });
 
 
+inputNomeCompleto.addEventListener('change', function(e){
+    e.preventDefault()
+    let nomeCompleto = document.querySelector("#txtNome").value
+    validarNomeCompleto(nomeCompleto)
+})
+
+
 inputCPF.addEventListener('change', function(e){
     e.preventDefault()
     let cpf = document.querySelector("#txtCPF").value
@@ -121,15 +131,29 @@ inputCPF.addEventListener('change', function(e){
 })
 
 
-inputCEP.addEventListener('change', function(e){
-    e.preventDefault()
-    let cep = document.querySelector("#txtCEP").value
-    localizarEndereco(cep)
-})
-
-
 inputDataNascimento.addEventListener('change', function(e){
     e.preventDefault()
     let dataNascimento = document.querySelector("#txtDataNascimento").value
     validarMaioridade(dataNascimento)
+})
+
+
+inputEmail.addEventListener('change', function(e){
+    e.preventDefault()
+    let email = document.querySelector("#txtEmail").value
+    validarEmail(email)
+})
+
+
+inputTelefone.addEventListener('change', function(e){
+    e.preventDefault()
+    let numeroTelefone = document.querySelector("#txtTelefone").value
+    validarNumeroTelefone(numeroTelefone)
+})
+
+
+inputCEP.addEventListener('change', function(e){
+    e.preventDefault()
+    let cep = document.querySelector("#txtCEP").value
+    localizarEndereco(cep)
 })
