@@ -18,6 +18,7 @@ export function validarCPF (cpf) {
     cpf == "99999999999") {
 
         alert('Verifique o CPF!');
+        document.querySelector('#txtCPF').value = '';
         return false;
 
     } else {
@@ -39,6 +40,7 @@ export function validarCPF (cpf) {
         console.log("Primeiro d : " + soma);
         if(soma != cpf[9]) {
             alert('Verifique o CPF!');
+            document.querySelector('#txtCPF').value = '';
             return false;
         }
         
@@ -59,6 +61,7 @@ export function validarCPF (cpf) {
             soma = 0;
         if(soma != cpf[10]) {
             alert('Verifique o CPF!');
+            document.querySelector('#txtCPF').value = '';
             return false;
         }
         
@@ -78,19 +81,20 @@ export function localizarEndereco(inputCEP) {
 
         xhr.open('GET', url);
         xhr.addEventListener('load', function () {
+        let resposta = xhr.responseText;
+        let endereco = JSON.parse(resposta);
 
-            if (xhr.status == 200) {
+            if (!endereco.erro) {
 
-                console.log(xhr.status)
-                let resposta = xhr.responseText;
-                let endereco = JSON.parse(resposta);
                 document.querySelector('#txtLogradouro').value = endereco.logradouro;
                 document.querySelector('#txtBairro').value = endereco.bairro;
                 document.querySelector('#txtCidade').value = endereco.localidade + ' - ' + endereco.uf;
 
             } else {
 
-                alert('Tente novamente!');
+                console.log(endereco.erro)
+                alert('Digite um CEP válido!');
+                document.querySelector('#txtCEP').value = '';
 
             };
 
@@ -119,6 +123,7 @@ export function validarMaioridade(dataNascimento) {
     if (ano < 18 || (ano == 18 & mes < 0) || (ano == 18 & mes == 0 & dia < 2)) {
 
         alert('Você precisa ser maior de idade para se cadastrar!');
+        document.querySelector('#txtDataNascimento').value = ''
 
     };
 
