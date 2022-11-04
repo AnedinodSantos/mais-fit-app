@@ -3,11 +3,8 @@ import { qtdAtual, zeraQtdAtual, verificaEnviaCarrinho } from "./services/marmit
 import { manipulaQtdMarmita, recuperaMarmitasLocalStorage, extraiMarmitaDoHtmlComoObj,  excluirMarmitasLocalStorage} from "./services/marmitaServices.js"
 import { criaProdutoLocalStorage, renderizaProdutoNoOffcanvas, excluirProdutoDoLocalStorage } from "./services/produtoServices.js"
 import { gravaKitNoLocalStorage, extraiKitDoHtmlComoObj, rendererizaKitModal, recuperaKitLocalStorage, excluirKitLocalStorage } from "./services/kitServices.js"
-<<<<<<< HEAD
 import { validarCPF, localizarEndereco, validarMaioridade, validarNomeCompleto, validarNumeroTelefone, validarEmail } from "./services/validacaoServices.js"
-=======
 import { enviaPedidoAoServidor,pegaDadosPedidos } from "./services/formEntregaServices.js"
->>>>>>> dinodev
 
 const btnCarrinho = document.querySelector('[data-btn-carrinho]')
 const ocCarrinho = document.querySelector('[data-oc-carrinho]')
@@ -20,7 +17,6 @@ const inputQtdMarmitasEscolhidas = modalkit.querySelector('[data-modal-kit-qtd]'
 const btnsCloseModal = document.querySelectorAll('[data-modal-marmita-close]')
 
 const modalDadosEntrega = document.getElementById("entregaModal")
-<<<<<<< HEAD
 
 const inputNomeCompleto = document.querySelector("#txtNome")
 const inputCPF = document.querySelector("#txtCPF")
@@ -28,9 +24,7 @@ const inputDataNascimento = document.querySelector("#txtDataNascimento")
 const inputEmail = document.querySelector("#txtEmail")
 const inputTelefone = document.querySelector("#txtTelefone")
 const inputCEP = document.querySelector("#txtCEP")
-=======
 const btnConcluirPedido = modalDadosEntrega.querySelector("[data-conclui-pedido]")
->>>>>>> dinodev
 
 atualizaIconeCarrinho()
 
