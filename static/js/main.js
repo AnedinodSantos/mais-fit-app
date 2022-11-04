@@ -1,21 +1,9 @@
-// import { atualizaIconeCarrinho, excluirKitLocalStorage, excluirMarmitasLocalStorage, zeraQtdAtual } from "./servicos_.js"
-// import { gravaKitNoLocalStorage } from "./servicos_.js"
-// import { rendererizaKitModal } from "./servicos_.js"
-// import { renderizaProdutoNoOffcanvas } from "./servicos_.js"
-// import { extraiKitDoHtmlComoObj } from "./servicos_.js"
-// import { manipulaQtdMarmita } from "./servicos_.js"
-// import { recuperaKitLocalStorage } from "./servicos_.js"
-// import { recuperaMarmitasLocalStorage } from "./servicos_.js"
-// import { criaProdutoLocalStorage } from "./servicos_.js"
-// import { verificaEnviaCarrinho } from "./servicos_.js"
-// import { extraiMarmitaDoHtmlComoObj } from "./servicos_.js"
-// import { excluirProdutoDoLocalStorage } from "./servicos_.js"
-// import { qtdAtual } from "./servicos_.js"
 import { atualizaIconeCarrinho} from "./services/cartServices.js"
 import { qtdAtual, zeraQtdAtual, verificaEnviaCarrinho } from "./services/marmitaServices.js"
 import { manipulaQtdMarmita, recuperaMarmitasLocalStorage, extraiMarmitaDoHtmlComoObj,  excluirMarmitasLocalStorage} from "./services/marmitaServices.js"
 import { criaProdutoLocalStorage, renderizaProdutoNoOffcanvas, excluirProdutoDoLocalStorage } from "./services/produtoServices.js"
 import { gravaKitNoLocalStorage, extraiKitDoHtmlComoObj, rendererizaKitModal, recuperaKitLocalStorage, excluirKitLocalStorage } from "./services/kitServices.js"
+import { enviaPedidoAoServidor,pegaDadosPedidos } from "./services/formEntregaServices.js"
 
 const btnCarrinho = document.querySelector('[data-btn-carrinho]')
 const ocCarrinho = document.querySelector('[data-oc-carrinho]')
@@ -27,10 +15,8 @@ const btnEnviaCarrinho = modalkit.querySelector('[data-modal-btn-carrinho]')
 const inputQtdMarmitasEscolhidas = modalkit.querySelector('[data-modal-kit-qtd]')
 const btnsCloseModal = document.querySelectorAll('[data-modal-marmita-close]')
 
-const btnFinalizaPedido = ocCarrinho.querySelector("[data-oc-btn-finalizar]")
 const modalDadosEntrega = document.getElementById("entregaModal")
-
-
+const btnConcluirPedido = modalDadosEntrega.querySelector("[data-conclui-pedido]")
 
 atualizaIconeCarrinho()
 
@@ -109,3 +95,9 @@ btnsCloseModal.forEach(btn => {
         zeraQtdAtual()
     }
 });
+
+
+btnConcluirPedido.onclick = () => {
+    let pedido = pegaDadosPedidos(modalDadosEntrega)
+    enviaPedidoAoServidor(pedido)
+}

@@ -91,4 +91,6 @@
     {% include 'partials/_footer.html' %}
 {% endblock %}
 
-{% block scripts %}{% endblock %}
+{% block scripts %}
+    <script type="module" src="{% static '/js/main.js' %}"></script>
+{% endblock %}

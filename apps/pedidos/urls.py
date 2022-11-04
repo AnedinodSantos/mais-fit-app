@@ -4,6 +4,6 @@ from pedidos.views import *
 
 urlpatterns = [
     path('', index, name='index'),
-    path('monte-seu-kit/<int:kitId>', monte_seu_kit, name='monte_seu_kit'),
-    path('carrinho', carrinho, name='carrinho')
+    path('recebe-pedido', recebe_pedido, name='recebePedido'),
+    path('sucesso/<int:id_pedido>', sucesso, name='sucesso')
 ]

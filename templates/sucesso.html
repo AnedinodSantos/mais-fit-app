@@ -3,12 +3,26 @@
 {% load static %}
 
 {% block header %}
-    {% include 'partials/_header.html' %}
+    {% include 'partials/_header-sucesso.html' %}
 {% endblock %}
 
 {% block content %}
-
-
+    <div class="container text-center">
+        <h1>Obrigado!</h1>
+        <hr>
+        <h3>Anote o número de seu pedido:</h3>
+        <h2 class="text-danger"><b>{{ id }}</b></h2>
+        <p>Entraremos em contato em breve para mais informações.</p>
+        <p>Qualquer dúvida sobre este pedido, entre em contato conosco e informe o número do pedido para que possamos te ajudar.</p>
+        <p>Tenha um ótimo dia!</p>
+        <p>
+            Atenciosamente,<br>
+            Equipe Mais Fit Marmitinhas
+        </p>
+        <p>
+            <a href="{% url 'index'%}" class="btn btn-success btn-lg">Voltar à Página Principal</a>
+        </p>
+    </div>
 {% endblock %}
 
 {% block footer %}
@@ -16,5 +30,5 @@
 {% endblock %}
 
 {% block scripts %}
-
+    <script type="module" src="{% static '/js/sucesso.js' %}"></script>
 {% endblock %}
