@@ -1,11 +1,15 @@
 // validacao de nome
 export function validarNomeCompleto(nomeCompleto) {
-    if (/^[A-Za-z ]+$/.test(nomeCompleto) && nomeCompleto.length > 5) {
+    if (/^[A-Za-z ]+$/.test(nomeCompleto) && nomeCompleto.length > 8) {
+
         return true;
+
     } else {
+
         alert('Digite um nome válido!');
         document.querySelector("#txtNome").value = '';
         return false;
+
     };
 };
 
@@ -14,7 +18,7 @@ export function validarNomeCompleto(nomeCompleto) {
 export function validarCPF (cpf) {
 
     console.log(cpf);
-	cpf  = cpf.replace(/\.|-/g,"");
+	cpf = cpf.replace(/\.|-/g,"");
 	console.log(cpf);
 
     if (cpf.length != 11 || 
@@ -79,8 +83,8 @@ export function validarCPF (cpf) {
         
         console.log("segundo d : " + soma); 
         return true;
-    }
-}
+    };
+};
 
 
 // validacao de maioridade
@@ -95,7 +99,7 @@ export function validarMaioridade(dataNascimento) {
     if (ano < 18 || (ano == 18 & mes < 0) || (ano == 18 & mes == 0 & dia < 2)) {
 
         alert('Você precisa ser maior de idade para se cadastrar!');
-        document.querySelector('#txtDataNascimento').value = ''
+        document.querySelector('#txtDataNascimento').value = '';
 
     };
 
@@ -139,7 +143,7 @@ export function validarNumeroTelefone(numeroTelefone) {
 // localizacao de endereco
 export function localizarEndereco(inputCEP) {
 
-    if (inputCEP.length == 8) {
+    if (inputCEP.length == 8 && /^[0-9]*\d$/.test(inputCEP)) {
 
         let url = `https://viacep.com.br/ws/${inputCEP}/json/`;
         let xhr = new XMLHttpRequest();
@@ -169,7 +173,8 @@ export function localizarEndereco(inputCEP) {
 
     } else {
 
-        alert('Número de caracteres inválido!');
+        alert('Digite um CEP válido!');
+        document.querySelector('#txtCEP').value = '';
 
     };
 
