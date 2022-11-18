@@ -1,29 +1,34 @@
 from django.contrib import admin
 
+from nested_admin import NestedModelAdmin, NestedTabularInline
+
 from pedidos.models import Kit, Marmita, MeiosPagamento, Pedido, KitPedido, MarmitaKit
 
 
-# class KitPedidoInline(admin.StackedInline):
-#     model = KitPedido
-#     extra = 0
+class MarmitaKitInline(NestedTabularInline):
+    model = MarmitaKit
+
+    def get_extra(self, request, obj=None, **kwargs):
+        return 0 if obj else 10
 
 
-# class PedidoAdmin(admin.ModelAdmin):
-#     readonly_fields = ("cliente", "data_emissao")
-#     inlines = [KitPedidoInline]
+class KitPedidoInline(NestedTabularInline):
+    model = KitPedido
+    extra = 0
+    inlines =[MarmitaKitInline]
 
 
-# class MarmitaKitInline(admin.StackedInline):
-#     model = MarmitaKit
+class PedidoAdmin(NestedModelAdmin):
+    model = Pedido
+    list_display = ("__str__","kit", )
+    inlines = [KitPedidoInline]
 
-
-# class MarmitaKitAdmin(admin.ModelAdmin):
-#     inlines = [MarmitaKitInline]
-
+    def kit(self, obj):
+        result = KitPedido.objects.filter(pedido=obj)
+        return result[0]
 
 
 admin.site.register(Kit)
 admin.site.register(Marmita)
 admin.site.register(MeiosPagamento)
-admin.site.register(Pedido,)
-# admin.site.register(KitPedido, MarmitaKitAdmin)
+admin.site.register(Pedido, PedidoAdmin)

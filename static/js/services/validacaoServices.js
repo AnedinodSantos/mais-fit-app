@@ -1,6 +1,6 @@
 // validacao de nome
 export function validarNomeCompleto(nomeCompleto) {
-    if (/^[A-Za-z ]+$/.test(nomeCompleto) && nomeCompleto.length > 8) {
+    if (/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/.test(nomeCompleto) && nomeCompleto.length > 8) {
 
         return true;
 

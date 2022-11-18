@@ -63,6 +63,13 @@ class Pedido(models.Model):
     def __str__(self) -> str:
         return f"Pedido número {self.id}"
 
+    def __kit(self):
+        result = KitPedido.objects.filter(pedido=self)
+        return result[0]
+
+    kit = property(__kit)
+
+
     class Meta:
         db_table = "pedidos"
 
